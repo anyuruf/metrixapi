@@ -1,4 +1,5 @@
-const TARGETS_NODE = '12.13.0'
+// default JS loader config for browsers that support <script type='module'
+const TARGETS_NODE = '14.17.2'
 const CORE_JS_VERSION = '3.6'
 
 module.exports = {
