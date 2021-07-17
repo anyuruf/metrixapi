@@ -4,8 +4,6 @@ import jwt from 'jsonwebtoken'
 import neoSchema from './schema/neo-schema'
 
 const app = express()
-
-
 /*
  * Create a new ApolloServer instance, serving the GraphQL schema
  * created using Neo4jGraphQL above and injecting the Neo4j driver
@@ -13,14 +11,10 @@ const app = express()
  * generated resolvers to connect to the database.
  */
 const server = new ApolloServer({
-  context: ({ req }) => {
-   return {
-     req,
-   }
- },
+  context: ({ req }) => ({ req }),
   schema: neoSchema.schema,
   introspection: true,
-  playground: true,
+  playground: true
 })
 
 // Specify host, port and path for GraphQL endpoint

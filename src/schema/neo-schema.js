@@ -12,8 +12,9 @@ const neoSchema = new Neo4jGraphQL({
   driver,
   config: {
     jwt: {
-      secret: process.env.JWT_SECRET,
-    },
-  }, })
+      secret: process.env.JWT_SECRET
+    }
+  }
+ })
 
   module.exports = neoSchema;
