@@ -1,7 +1,7 @@
 {
   "name": "metrix-api",
   "version": "0.0.1",
-  "description": "API app for GRANDstack",
+  "description": "API for Family tree app",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

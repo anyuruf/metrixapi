@@ -6,9 +6,7 @@ import neoSchema from './schema/neo-schema'
 const app = express()
 /*
  * Create a new ApolloServer instance, serving the GraphQL schema
- * created using Neo4jGraphQL above and injecting the Neo4j driver
- * instance into the context object so it is available in the
- * generated resolvers to connect to the database.
+ * created using Neo4jGraphQL from schema folder
  */
 const server = new ApolloServer({
   context: ({ req }) => ({ req }),

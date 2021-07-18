@@ -13,7 +13,7 @@ type User @exclude {
   email: String!
   password: String! @private
   memAnchor: ID
-  role: String!
+  role: String
   comments: [Comment] @relationship(type: "WROTE", direction: OUT)
 }
 
@@ -24,8 +24,8 @@ type AuthToken @exclude {
 type Comment {
   id: ID! @id
   content: String!
-  created: DateTime @timestamp
-  updated: DateTime @timestamp
+  created: DateTime @timestamp(operations: [CREATE])
+  updated: DateTime @timestamp(operations: [UPDATE])
   member: Member @relationship(type: "COMMENTED", direction: OUT)
   user: User @relationship(type: "WROTE", direction: IN)
 }
