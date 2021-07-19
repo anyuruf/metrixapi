@@ -4,26 +4,22 @@ var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequ
 
 var _graphql = require("@neo4j/graphql");
 
-var _graphqlOgm = require("@neo4j/graphql-ogm");
+var _dotenv = _interopRequireDefault(require("dotenv"));
 
-var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
+var _typeDefs = _interopRequireDefault(require("./type-defs"));
 
-var _driver = require("./driver");
+var _resolvers = _interopRequireDefault(require("./resolvers"));
 
-var _typeDefs = require("./schema/type-defs");
+var _driver = _interopRequireDefault(require("../utils/driver"));
 
-var _resolvers = require("./schema/resolvers");
+_dotenv.default.config(); // Schema instance to be injected into the Apollo Server object in the entry file
+// root index.js
 
-//Local Imports
-const ogm = new _graphqlOgm.OGM({
-  typeDefs: _typeDefs.typeDefs,
-  driver: _driver.driver
-});
-const User = ogm.model('User');
+
 const neoSchema = new _graphql.Neo4jGraphQL({
-  typeDefs: _typeDefs.typeDefs,
-  resolvers: _resolvers.resolvers,
-  driver: _driver.driver,
+  typeDefs: _typeDefs.default,
+  resolvers: _resolvers.default,
+  driver: _driver.default,
   config: {
     jwt: {
       secret: process.env.JWT_SECRET

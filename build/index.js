@@ -6,29 +6,22 @@ var _apolloServerExpress = require("apollo-server-express");
 
 var _express = _interopRequireDefault(require("express"));
 
+var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
+
 var _neoSchema = _interopRequireDefault(require("./schema/neo-schema"));
 
-var _bcrypt = require("bcrypt");
-
-var _driver = require("./driver");
-
-//Local Imports
 const app = (0, _express.default)();
 /*
  * Create a new ApolloServer instance, serving the GraphQL schema
- * created using Neo4jGraphQL above and injecting the Neo4j driver
- * instance into the context object so it is available in the
- * generated resolvers to connect to the database.
+ * created using Neo4jGraphQL from schema folder
  */
 
 const server = new _apolloServerExpress.ApolloServer({
   context: ({
     req
-  }) => {
-    return {
-      req
-    };
-  },
+  }) => ({
+    req
+  }),
   schema: _neoSchema.default.schema,
   introspection: true,
   playground: true
