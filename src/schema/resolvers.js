@@ -1,4 +1,3 @@
-import { compareSync, hashSync } from 'bcrypt'
 import { OGM } from '@neo4j/graphql-ogm'
 import jwt from 'jsonwebtoken'
 import typeDefs  from './type-defs'
@@ -26,9 +25,10 @@ const resolvers = {
         throw new Error("user with that email already exists");
     }
 
-    const hash = hashPassword(args.password)
+     const hash = await hashPassword(args.password)
 
-    const [user] = (
+
+    const user = (
         await User.create({
             input: [
                 {
@@ -36,18 +36,17 @@ const resolvers = {
                     lastName: args.lastName,
                     email: args.email,
                     role: args.role,
-                    password: hash
+                    password: hash,
                 }
             ]
         })
     )
 
-    const { id, firstName } = user
+    const { id, firstName }  = user
+    const payLoad = { id, firstName }
 
     return {
-            token: jwt.sign({ id, firstName }, process.env.JWT_SECRET, {
-                expiresIn: '14d',
-              })
+            token: createJWT(payLoad)
         }
   },
 
@@ -59,7 +58,7 @@ const resolvers = {
       const payLoad = { id, firstName }
 
       if(!comparePassword(args.password, password)) {
-        throw new Error('Password/@email combination wrong!')
+        throw new Error('Password is wrong!')
       }
 
       return {

@@ -4,7 +4,7 @@ const saltRounds = 11
 
 function hashPassword(plainText) {
     return new Promise((resolve, reject) => {
-        bcrypt.hashSync(plainText, saltRounds, (err, hash) => {
+        hashSync(plainText, saltRounds, (err, hash) => {
             if (err) {
                 reject(err);
             }
