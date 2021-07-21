@@ -15,30 +15,23 @@ type User @exclude {
   memAnchor: ID
   role: String @auth(rules: [{roles: ["zadmin"]}])
   comments: [Comment] @relationship(type: "WROTE", direction: OUT)
+  created: DateTime @timestamp(operations: [CREATE])
+  updated: DateTime @timestamp(operations: [UPDATE])
 }
 
 type AuthToken @exclude {
   token: String!
 }
 
-type Comment {
-  id: ID! @id
-  content: String!
-  created: DateTime @timestamp(operations: [CREATE])
-  updated: DateTime @timestamp(operations: [UPDATE])
-  member: Member @relationship(type: "COMMENTED", direction: OUT)
-  user: User @relationship(type: "WROTE", direction: IN)
-}
-
-type Clan {
+type Clan @auth(rules: [{roles: ["zadmin", "admin"]}]) {
  id: ID! @id
  cname: String
  tribe: String
+ nation:String
  members: [Member] @relationship(type: "BELONGS", direction: IN)
 }
 
-
-type Member {
+type Member @auth(rules: [{roles: ["zadmin", "admin"]}]) {
   id: ID! @id
   firstName: String!
   lastName: String!
@@ -48,6 +41,14 @@ type Member {
   Description: String
   clan: Clan @relationship(type: "BELONGS", direction: OUT)
   comments: [Comment] @relationship(type: "COMMENTED", direction: IN)
+}
+
+type Comment {
+  id: ID! @id
+  content: String!
+  member: Member @relationship(type: "COMMENTED", direction: OUT)
+  user: User @relationship(type: "WROTE", direction: IN)
+  updated: DateTime @timestamp
 }
 
 type Query {
