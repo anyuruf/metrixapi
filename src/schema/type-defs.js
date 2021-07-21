@@ -70,7 +70,7 @@ type Mutation {
     memAnchor: ID
   ): AuthToken
 
-  login(email: String!, password: String!): AuthToken
+  SignIn(email: String!, password: String!): AuthToken
 
 }
 `;
