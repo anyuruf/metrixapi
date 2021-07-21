@@ -50,16 +50,19 @@ const resolvers = {
         }
   },
 
-    login: async (obj, args, context, info) => {
+    signIn: async (obj, args, context, info) => {
 
       const [user] = await User.find({ where: { email: args.email } })
 
       const { id, firstName, password } = user
       const payLoad = { id, firstName }
 
-      if(!comparePassword(args.password, password)) {
-        throw new Error('Password is wrong!')
+      const equal = await comparePassword(args.password, password)
+
+      if (!equal) {
+          throw new Error("wrong password")
       }
+
 
       return {
         token: createJWT(payLoad)

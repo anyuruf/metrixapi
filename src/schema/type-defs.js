@@ -13,7 +13,7 @@ type User @exclude {
   email: String!
   password: String! @private
   memAnchor: ID
-  role: String
+  role: String @auth(rules: [{roles: ["zadmin"]}])
   comments: [Comment] @relationship(type: "WROTE", direction: OUT)
 }
 
@@ -67,7 +67,7 @@ type Mutation {
     email: String!,
     role: String,
     password: String!,
-    dadAnchor: ID
+    memAnchor: ID
   ): AuthToken
 
   login(email: String!, password: String!): AuthToken
