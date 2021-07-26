@@ -6,24 +6,30 @@ const typeDefs = gql`
 scalar DateTime
 scalar Date
 
-type User @exclude {
+type User {
   id: ID! @id
   firstName: String!
   lastName: String!
   email: String!
   password: String! @private
   memAnchor: ID
-  role: String @auth(rules: [{roles: ["zadmin"]}])
+  role: String
   comments: [Comment] @relationship(type: "WROTE", direction: OUT)
   created: DateTime @timestamp(operations: [CREATE])
   updated: DateTime @timestamp(operations: [UPDATE])
 }
 
+extend type User @exclude @auth (rules: [
+       {operations: [CREATE,CONNECT, DISCONNECT], roles: ["zadmin", "admin"]},
+       {operations: [UPDATE, READ, DELETE],
+          OR: [{ roles: ["zadmin", "admin"] }, { allow: { id: "$jwt.sub" } }]}
+    ])
+
 type AuthToken @exclude {
   token: String!
 }
 
-type Clan @auth(rules: [{roles: ["zadmin", "admin"]}]) {
+type Clan  {
  id: ID! @id
  cname: String
  tribe: String
@@ -31,7 +37,7 @@ type Clan @auth(rules: [{roles: ["zadmin", "admin"]}]) {
  members: [Member] @relationship(type: "BELONGS", direction: IN)
 }
 
-type Member @auth(rules: [{roles: ["zadmin", "admin"]}]) {
+type Member  {
   id: ID! @id
   firstName: String!
   lastName: String!
@@ -71,7 +77,12 @@ type Mutation {
     memAnchor: ID
   ): AuthToken
 
-  SignIn(email: String!, password: String!): AuthToken
+  changePassword(
+    email: String!,
+    password: String!
+  ): AuthToken
+
+  signIn(email: String!, password: String!): AuthToken
 
 }
 `;

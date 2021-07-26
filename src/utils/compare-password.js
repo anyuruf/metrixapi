@@ -1,8 +1,8 @@
-import { compareSync } from "bcrypt";
+import { compare } from "bcrypt";
 
 function comparePassword(plainText, hash) {
     return new Promise((resolve, reject) => {
-        compareSync(plainText, hash, (err, result) => {
+        compare(plainText, hash, (err, result) => {
             if (err) {
                 return reject(err);
             }

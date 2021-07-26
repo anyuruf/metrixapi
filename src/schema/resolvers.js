@@ -1,20 +1,22 @@
 import { OGM } from '@neo4j/graphql-ogm'
 import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
 import typeDefs  from './type-defs'
 import driver from '../utils/driver'
 import { hashPassword, comparePassword, createJWT } from '../utils/hash-crypt'
 
 // OGM used on the login and SignUp mutations.
-
+dotenv.config()
 
 const ogm = new OGM({
   typeDefs,
-  driver,
+  driver
 })
 
 const User = ogm.model("User")
 
 const resolvers = {
+
   Mutation: {
     signUp: async (obj, args, context, info) => {
 
@@ -27,8 +29,7 @@ const resolvers = {
 
      const hash = await hashPassword(args.password)
 
-
-    const user = (
+     const [user] = (
         await User.create({
             input: [
                 {
@@ -36,37 +37,58 @@ const resolvers = {
                     lastName: args.lastName,
                     email: args.email,
                     role: args.role,
-                    password: hash,
+                    password: hash
                 }
             ]
         })
-    )
+    ).users
 
-    const { id, firstName }  = user
-    const payLoad = { id, firstName }
+    const { id, firstName, role }  = user
+    const payLoad = { id, firstName, roles:role }
 
-    return {
-            token: createJWT(payLoad)
-        }
+    const token = await createJWT(payLoad)
+
+    return { token }
+
+  },
+
+  changePassword: async (obj, args, context, info) => {
+
+    const [user] = await User.find({ where: { email: args.email } })
+    const hash = await hashPassword(args.password)
+
+    const { users } = await User.update({
+    where: { email: args.email },
+    update: { password: hash },
+    });
+
+      const { id, firstName, role }  = user
+      const payLoad = { id, firstName, roles:role }
+
+      const token = await createJWT(payLoad)
+
+      return { token }
+
   },
 
     signIn: async (obj, args, context, info) => {
 
       const [user] = await User.find({ where: { email: args.email } })
 
-      const { id, firstName, password } = user
-      const payLoad = { id, firstName }
+      const { id, firstName, role, password } = user
 
-      const equal = await comparePassword(args.password, password)
+      const equal = comparePassword(args.password, password)
 
       if (!equal) {
           throw new Error("wrong password")
       }
 
+      const payLoad = { id, firstName, roles:role }
 
-      return {
-        token: createJWT(payLoad)
-        }
+      const token = await createJWT(payLoad)
+
+      return { token }
+
       }
     }
 }

@@ -1,10 +1,10 @@
-import { hashSync } from 'bcrypt'
+import { hash } from 'bcrypt'
 
 const saltRounds = 11
 
 function hashPassword(plainText) {
     return new Promise((resolve, reject) => {
-        hashSync(plainText, saltRounds, (err, hash) => {
+        hash(plainText, saltRounds, (err, hash) => {
             if (err) {
                 reject(err);
             }
