@@ -5,7 +5,8 @@
 ```
 npm install
 ```
-Used neo4j-graphql-library version 1.1 will upgrade to 2.0 soon enough. Create a free account from https://neo4j.com/cloud/aura/?ref=neo4j-home-hero Or 
+Used neo4j-graphql-library version 1.1 will upgrade to 2.0 soon enough. Create a free account from https://neo4j.com/cloud/aura/?ref=neo4j-home-hero Or And 
+Neo4j Database. Neo4j Desktop pkg
 
 To start
 ```
