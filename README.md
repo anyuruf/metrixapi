@@ -1,17 +1,15 @@
-# GRANDstack Starter - GraphQL API
+# Metrix API
 
 ## Quick Start
-
-Install dependencies:
 
 ```
 npm install
 ```
+Used neo4j-graphql-library version 1.1 will upgrade to 2.0 soon enough. Create a free account from https://neo4j.com/cloud/aura/?ref=neo4j-home-hero Or 
 
-Start the GraphQL service:
-
+To start
 ```
-npm start
+npm run dev
 ```
 
 This will start the GraphQL service (by default on localhost:4000) where you can issue GraphQL requests or access GraphQL Playground in the browser:
@@ -34,9 +32,6 @@ JWT_SECRET="-----BEGIN PUBLIC KEY-----<ACTUAL_PUBLIC_KEY_CONTENT_WITH_CRLF>-----
 
 Note that grand-stack-starter does not currently bundle a distribution of Neo4j. You can download [Neo4j Desktop](https://neo4j.com/download/) and run locally for development, spin up a [hosted Neo4j Sandbox instance](https://neo4j.com/download/), run Neo4j in one of the [many cloud options](https://neo4j.com/developer/guide-cloud-deployment/), or [spin up Neo4j in a Docker container](https://neo4j.com/developer/docker/). Just be sure to update the Neo4j connection string and credentials accordingly in `.env`.
 
-## Configuring Auth0 for GRANDstack - GraphQL.
-
-Please read this [write-up](auth0-howto.md) for more information on configuring `Auth0` for GRANDStack - GraphQL.
 
 
 ## Deployment
