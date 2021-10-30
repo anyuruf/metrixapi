@@ -2,10 +2,11 @@
 
 ## Quick introduction
 I built a familytree app using the grandstack starter kit https://grandstack.io/docs/getting-started-grand-stack-starter/ (api only option). Express with Apollo server setup.
-Used neo4j-graphql-library version 1.1 will upgrade to 2.0 soon enough. Create a free account from https://neo4j.com/cloud/aura/?ref=neo4j-home-hero Or And 
-Neo4j Database. Neo4j Desktop pkg 
+Used neo4j-graphql-library version 1.1 will upgrade to 2.0 soon enough https://neo4j.com/docs/graphql-manual/current/. I think my schema in version 2.0 ready
 
-To start
+## Quick start
+
+npm install
 ```
 npm run dev
 ```
