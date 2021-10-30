@@ -4,6 +4,8 @@
 I built a familytree app using the grandstack starter kit https://grandstack.io/docs/getting-started-grand-stack-starter/ (api only option). Express with Apollo server setup.
 Used neo4j-graphql-library version 1.1 will upgrade to 2.0 soon enough https://neo4j.com/docs/graphql-manual/current/. I think my schema in version 2.0 ready
 
+The secret sauce is  the /src/schema/type-defs.js file which's got the type/node, relationship and authorization definitions are. Very intuitive!!
+
 ## Quick start
 
 npm install
