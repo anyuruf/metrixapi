@@ -1,19 +1,16 @@
 # Metrix API
 
-## Quick Start
-
-```
-npm install
-```
+## Quick introduction
+I built a familytree app using the grandstack starter kit https://grandstack.io/docs/getting-started-grand-stack-starter/ (api only option). Express with Apollo server setup.
 Used neo4j-graphql-library version 1.1 will upgrade to 2.0 soon enough. Create a free account from https://neo4j.com/cloud/aura/?ref=neo4j-home-hero Or And 
-Neo4j Database. Neo4j Desktop pkg
+Neo4j Database. Neo4j Desktop pkg 
 
 To start
 ```
 npm run dev
 ```
 
-This will start the GraphQL service (by default on localhost:4000) where you can issue GraphQL requests or access GraphQL Playground in the browser:
+This will start the GraphQL service (by default on localhost:4001/grahpql) where you can issue GraphQL requests or access GraphQL Playground in the browser:
 
 ![GraphQL Playground](img/graphql-playground.png)
 
