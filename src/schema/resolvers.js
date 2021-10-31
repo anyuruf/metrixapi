@@ -1,5 +1,3 @@
-import { OGM } from '@neo4j/graphql-ogm'
-import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 import typeDefs  from './type-defs'
 import driver from '../utils/driver'
@@ -7,6 +5,8 @@ import { hashPassword, comparePassword, createJWT } from '../utils/hash-crypt'
 
 // OGM used on the login and SignUp mutations.
 dotenv.config()
+
+const { OGM } = require("@neo4j/graphql-ogm");
 
 const ogm = new OGM({
   typeDefs,
@@ -77,7 +77,7 @@ const resolvers = {
 
       const { id, firstName, role, password } = user
 
-      const equal = comparePassword(args.password, password)
+      const equal = await comparePassword(args.password, password)
 
       if (!equal) {
           throw new Error("wrong password")

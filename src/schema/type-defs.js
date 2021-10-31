@@ -2,10 +2,6 @@ import { gql } from 'apollo-server-express'
 
 
 const typeDefs = gql`
-
-scalar DateTime
-scalar Date
-
 type User {
   id: ID! @id
   firstName: String!
@@ -15,8 +11,8 @@ type User {
   memAnchor: ID
   role: String
   comments: [Comment] @relationship(type: "WROTE", direction: OUT)
-  created: DateTime @timestamp(operations: [CREATE])
-  updated: DateTime @timestamp(operations: [UPDATE])
+  createdAt: DateTime @timestamp(operations: [CREATE])
+  updatedAt: DateTime @timestamp(operations: [UPDATE])
 }
 
 extend type User @exclude @auth (rules: [
@@ -54,7 +50,7 @@ type Comment {
   content: String!
   member: Member @relationship(type: "COMMENTED", direction: OUT)
   user: User @relationship(type: "WROTE", direction: IN)
-  updated: DateTime @timestamp
+  updated: DateTime! @timestamp
 }
 
 type Query {
