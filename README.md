@@ -1,20 +1,19 @@
-# GRANDstack Starter - GraphQL API
+# Metrix API
 
-## Quick Start
+## Quick introduction
+I built a familytree app using the grandstack starter kit https://grandstack.io/docs/getting-started-grand-stack-starter/ (api only option). Express with Apollo server setup.
+Used neo4j-graphql-library version 1.1 will upgrade to 2.0 soon enough https://neo4j.com/docs/graphql-manual/current/. I think my schema in version 2.0 ready
 
-Install dependencies:
+The secret sauce is  the /src/schema/type-defs.js file which's got the type/node, relationship and authorization definitions. Very intuitive!!
 
-```
+## Quick start
+
 npm install
 ```
-
-Start the GraphQL service:
-
-```
-npm start
+npm run dev
 ```
 
-This will start the GraphQL service (by default on localhost:4000) where you can issue GraphQL requests or access GraphQL Playground in the browser:
+This will start the GraphQL service (by default on localhost:4001/grahpql) where you can issue GraphQL requests or access GraphQL Playground in the browser:
 
 ![GraphQL Playground](img/graphql-playground.png)
 
@@ -34,9 +33,6 @@ JWT_SECRET="-----BEGIN PUBLIC KEY-----<ACTUAL_PUBLIC_KEY_CONTENT_WITH_CRLF>-----
 
 Note that grand-stack-starter does not currently bundle a distribution of Neo4j. You can download [Neo4j Desktop](https://neo4j.com/download/) and run locally for development, spin up a [hosted Neo4j Sandbox instance](https://neo4j.com/download/), run Neo4j in one of the [many cloud options](https://neo4j.com/developer/guide-cloud-deployment/), or [spin up Neo4j in a Docker container](https://neo4j.com/developer/docker/). Just be sure to update the Neo4j connection string and credentials accordingly in `.env`.
 
-## Configuring Auth0 for GRANDstack - GraphQL.
-
-Please read this [write-up](auth0-howto.md) for more information on configuring `Auth0` for GRANDStack - GraphQL.
 
 
 ## Deployment
