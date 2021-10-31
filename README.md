@@ -1,8 +1,8 @@
 # Metrix API
 
 ## Quick introduction
-I built a familytree app using the grandstack starter kit https://grandstack.io/docs/getting-started-grand-stack-starter/ (api only option). Express with Apollo server setup.
-Used neo4j-graphql-library version 1.1 will upgrade to 2.0 soon enough https://neo4j.com/docs/graphql-manual/current/. I think my schema in version 2.0 ready
+I built a familytree app using the grandstack starter kit https://grandstack.io/docs/getting-started-grand-stack-starter/ (api only option).  Apollo server setup.
+Upgraded neo4j-graphql-library version 2.0 from 1.1 https://neo4j.com/docs/graphql-manual/current/. Upgraded the config setup to remove Express. The Neo4j graphql manual got great documentation on how to setup the whole api up without going to the grandstack website.
 
 The secret sauce is  the /src/schema/type-defs.js file which's got the type/node, relationship and authorization definitions. Very intuitive!!
 
