@@ -6,6 +6,9 @@ const { ApolloServer } = require('apollo-server')
  * created using Neo4jGraphQL from schema folder
  */
 const server = new ApolloServer({
+  cors:{ 
+	origin: '*',
+	credentials: true},
   context: ({ req }) => ({ req }),
   schema: neoSchema.schema,
   introspection: true,
