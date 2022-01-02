@@ -1,7 +1,6 @@
 import neoSchema from './schema/neo-schema';
 
-const { ApolloServer } = require('apollo-server')
-const { cors } = require('cors')
+const { ApolloServer } = require('apollo-server');
 /*
  * Create a new Apollo Server instance, serving the GraphQL schema
  * created using Neo4jGraphQL from schema folder

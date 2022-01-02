@@ -17,10 +17,9 @@
     "@apollo/client": "^3.2.5",
     "@neo4j/graphql": "^2.3.0",
     "@neo4j/graphql-ogm": "^2.3.0",
-    "apollo-server": "^2.19.2",
+    "apollo-server": "^2.25.3",
     "apollo-server-lambda": "^2.19.0",
     "bcrypt": "^5.0.1",
-    "cors": "^2.8.5",
     "csv-parse": "^4.10.1",
     "dotenv": "^7.0.0",
     "graphql": "^15.5.1",
@@ -45,5 +44,11 @@
     "nodemon": "^2.0.12",
     "shx": "^0.3.2"
   },
-  "keywords": ["apollo-server", "neo4j-graphql-library", "neo4j", "node", "javascript"]
+  "keywords": [
+    "apollo-server",
+    "neo4j-graphql-library",
+    "neo4j",
+    "node",
+    "javascript"
+  ]
 }
