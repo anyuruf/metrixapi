@@ -29,14 +29,16 @@ type Clan  {
  members: [Member] @relationship(type: "BELONGS", direction: IN)
 }
 
-type Member @auth (rules: [{ roles: ["zadmin", "admin"] }] {
+type Member @auth (rules: [{ roles: ["zadmin", "admin"] }]) {
   id: ID! @id
   firstName: String!
   lastName: String!
   gender: String!
   dob: Date
   dod: Date
-  Description: String
+  description: String
+  father: Member @relationship( type: "FATHER", direction: IN)
+  mother: Member @relationship( type: "MOTHER", direction: IN)
   clan: Clan @relationship(type: "BELONGS", direction: OUT)
   comments: [Comment] @relationship(type: "COMMENTED", direction: IN)
 }
