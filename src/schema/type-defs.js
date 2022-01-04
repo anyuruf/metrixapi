@@ -29,7 +29,7 @@ type Clan  {
  members: [Member] @relationship(type: "BELONGS", direction: IN)
 }
 
-type Member  {
+type Member @auth (rules: [{ roles: ["zadmin", "admin"] }] {
   id: ID! @id
   firstName: String!
   lastName: String!
