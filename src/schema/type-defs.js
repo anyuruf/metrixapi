@@ -2,13 +2,8 @@ import { gql } from 'apollo-server-express'
 
 
 const typeDefs = gql`
-extend type User @exclude @auth (rules: [
-       {operations: [CREATE,CONNECT, DISCONNECT], roles: ["zadmin", "admin"]},
-       {operations: [UPDATE, READ, DELETE],
-          OR: [{ roles: ["zadmin", "admin"] }, { allow: { id: "$jwt.id" } }]}
-    ])
 
-type User {
+type User @exclude {
   id: ID! @id
   firstName: String!
   lastName: String!
@@ -20,6 +15,7 @@ type User {
   createdAt: DateTime @timestamp(operations: [CREATE])
   updatedAt: DateTime @timestamp(operations: [UPDATE])
 }
+
 
 type AuthToken @exclude {
   token: String!

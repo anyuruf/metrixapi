@@ -20,6 +20,11 @@ const resolvers = {
   Mutation: {
     signUp: async (obj, args, context, info) => {
 
+    const { roles } = context.auth.jwt.roles;
+    if(!(roles === "zadmin" || "admin")) {
+      throw new Error("Must be admin to create users!!!");
+    }
+
     const [existing] = await User.find({
         where: { email: args.email }
     });
